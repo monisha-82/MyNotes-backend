@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import cors from "cors"
 
 dotenv.config()
+app.use(cors({origin: ["https://mynotes-panda.netlify.app"], credentials: true}))
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Connected to MongoDB")
@@ -17,13 +18,6 @@ const app = express()
 // To make input as json
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({origin: ["http://localhost:5173"], credentials: true}))
-
-const PORT = process.env.PORT || 3000
-
-app.listen(PORT, () => {
-    console.log("Server is running")
-})
 
 // Import routes
 import authRouter from "./routes/auth.route.js"
@@ -42,4 +36,10 @@ app.use((err, req, res, next) => {
         statusCode,
         message,
     })
+})
+
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
+    console.log("Server is running")
 })
