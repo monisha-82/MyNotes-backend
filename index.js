@@ -17,7 +17,7 @@ const app = express()
 // To make input as json
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({origin: ["*"], credentials: true}))
+app.use(cors())
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000")
