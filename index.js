@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser"
 import cors from "cors"
 
 dotenv.config()
+
+const app = express()
 app.use(cors({origin: ["https://mynotes-panda.netlify.app"], credentials: true}))
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
@@ -12,8 +14,6 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 }).catch((err) =>{
     console.log(err)
 })
-
-const app = express()
 
 // To make input as json
 app.use(express.json())
