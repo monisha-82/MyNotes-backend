@@ -6,7 +6,7 @@ import cors from "cors"
 
 dotenv.config()
 
-app.use(cors({origin: ["https://mynotes-panda.netlify.app"], credentials: true}))
+app.use(cors({origin: ["https://mynotes-panda.netlify.app"], methods: "GET,POST,PUT,DELETE", credentials: true}))
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("Connected to MongoDB")

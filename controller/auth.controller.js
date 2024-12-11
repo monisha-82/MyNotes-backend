@@ -51,11 +51,22 @@ export const signin = async(req, res, next) => {
 
         const {password: pass, ...rest} = validUser._doc
 
-        res.cookie("access_token", token, {httpOnly:true}).status(200).json({
+        // res.cookie("access_token", token, {httpOnly:true}).status(200).json({
+        //     success: true,
+        //     message: "Login successful!",
+        //     rest,
+        // })
+        res.cookie('access_token', token, {
+            domain: 'https://mynotes-panda.netlify.app',
+            path: '/',
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            }).status(200).json({
             success: true,
             message: "Login successful!",
             rest,
-        })
+        });
     } 
     catch (error) {
         next(error)
